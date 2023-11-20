@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// define route by closure
 Route::get('/', function () {
     return view('welcome');
 });
+
+// define route by controller
+Route::get(
+    '/welcome-from-controller',
+    WelcomeController::class
+);
 
 Route::middleware([
     'auth:sanctum',
