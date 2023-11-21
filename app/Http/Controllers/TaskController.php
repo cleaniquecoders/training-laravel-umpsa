@@ -71,7 +71,18 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request,[
+            'title' => ['required', 'min:5', 'max:250'],
+       ]);
+
+       Task::where('id', $id)->update([
+        'title' => $request->title,
+        'status' => $request->status ? true : false,
+       ]);
+
+       return redirect(
+        route('tasks.show', $id)
+       );
     }
 
     /**
