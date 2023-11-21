@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 // define route by closure
 Route::get('/', function () {
     return view('welcome');

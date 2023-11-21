@@ -32,24 +32,24 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-       $this->validate($request,[
+        $this->validate($request, [
             'title' => ['required', 'min:5', 'max:250'],
-       ]);
+        ]);
 
-       $task = Task::create([
-        'title' => $request->title,
-        'user_id' => auth()->user()->id,
-       ]);
+        $task = Task::create([
+            'title' => $request->title,
+            'user_id' => auth()->user()->id,
+        ]);
 
-       session()->flash('message', [
-        'title' => 'Create Record',
-        'text' => 'You have successfully create your task!',
-        'icon' => 'success',
-    ]);
+        session()->flash('message', [
+            'title' => 'Create Record',
+            'text' => 'You have successfully create your task!',
+            'icon' => 'success',
+        ]);
 
-       return redirect(
-        route('tasks.show', $task->id)
-       );
+        return redirect(
+            route('tasks.show', $task->id)
+        );
     }
 
     /**
@@ -77,24 +77,24 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'title' => ['required', 'min:5', 'max:250'],
-       ]);
+        ]);
 
-       Task::where('id', $id)->update([
-        'title' => $request->title,
-        'status' => $request->status ? true : false,
-       ]);
+        Task::where('id', $id)->update([
+            'title' => $request->title,
+            'status' => $request->status ? true : false,
+        ]);
 
-       session()->flash('message', [
-        'title' => 'Update Record',
-        'text' => 'You have successfully update your task!',
-        'icon' => 'success',
-    ]);
+        session()->flash('message', [
+            'title' => 'Update Record',
+            'text' => 'You have successfully update your task!',
+            'icon' => 'success',
+        ]);
 
-       return redirect(
-        route('tasks.show', $id)
-       );
+        return redirect(
+            route('tasks.show', $id)
+        );
     }
 
     /**
