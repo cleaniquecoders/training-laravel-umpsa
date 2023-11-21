@@ -40,7 +40,9 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Task::where('id', $id)->first();
+
+        return view('tasks.show', compact('task'));
     }
 
     /**
@@ -48,7 +50,9 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::where('id', $id)->first();
+
+        return view('tasks.edit', compact('task'));
     }
 
     /**
