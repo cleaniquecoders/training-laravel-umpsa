@@ -41,6 +41,12 @@ class TaskController extends Controller
         'user_id' => auth()->user()->id,
        ]);
 
+       session()->flash('message', [
+        'title' => 'Create Record',
+        'text' => 'You have successfully create your task!',
+        'icon' => 'success',
+    ]);
+
        return redirect(
         route('tasks.show', $task->id)
        );
@@ -80,6 +86,12 @@ class TaskController extends Controller
         'status' => $request->status ? true : false,
        ]);
 
+       session()->flash('message', [
+        'title' => 'Update Record',
+        'text' => 'You have successfully update your task!',
+        'icon' => 'success',
+    ]);
+
        return redirect(
         route('tasks.show', $id)
        );
@@ -91,6 +103,12 @@ class TaskController extends Controller
     public function destroy(string $id)
     {
         Task::where('id', $id)->delete();
+
+        session()->flash('message', [
+            'title' => 'Delete Record',
+            'text' => 'You have successfully delete your task!',
+            'icon' => 'error',
+        ]);
 
         return redirect(
             route('tasks.index')
