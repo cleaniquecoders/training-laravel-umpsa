@@ -23,7 +23,7 @@
                     <div class="col-span-6 sm:col-span-4 my-4">
                         <x-label for="status" value="{{ __('Status') }}" />
                         <p>
-                            <x-checkbox name="status" /> <span class="text-gray-700 pt-1 ml-1"> Is task
+                            <x-checkbox id="status" name="status" checked="{{ $task->status }}" /> <span class="text-gray-700 pt-1 ml-1"> Is task
                                 completed?</span>
                         </p>
                         <x-input-error for="status" class="mt-2" />
