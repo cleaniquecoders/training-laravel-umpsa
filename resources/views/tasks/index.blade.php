@@ -9,11 +9,26 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4">
                 {{ $tasks->links() }}
-                <ol>
+                <table>
+                    <tr>
+                        <th>Status</th>
+                        <th>Task</th>
+                        <th>Actions</th>
+                    </tr>
                     @foreach ($tasks as $task)
-                        <li class="my-4">{{ $task->title }}</li>
+                        <tr>
+                            <td class="text-center">
+                                {{ $task->status ? '✅' : '◻️' }}
+                            </td>
+                            <td class="px-4">{{ $task->title }}</td>
+                            <td class="text-center">
+                                <a class="px-1" href="{{ route('tasks.show', $task->id) }}">🔎</a>
+                                <a class="px-1" href="{{ route('tasks.edit', $task->id) }}">✏️</a>
+                                <a class="px-1" href="{{ route('tasks.destroy', $task->id) }}">🗑️</a>
+                            </td>
+                        </tr>
                     @endforeach
-                </ol>
+                </table>
                 {{ $tasks->links() }}
             </div>
         </div>
