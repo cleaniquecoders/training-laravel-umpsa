@@ -12,7 +12,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate(10);
+        $tasks = Task::latest()->paginate(10);
 
         return view('tasks.index', compact('tasks'));
         // return view('tasks.index', ['tugasan' => $tasks]);
@@ -24,7 +24,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -32,7 +32,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $this->validate($request,[
+            'title' => ['required', 'min:5', 'max:250'],
+       ]);
+
+       $task = Task::create([
+        'title' => $request->title,
+        'user_id' => auth()->user()->id,
+       ]);
+
+       return redirect(
+        route('tasks.show', $task->id)
+       );
     }
 
     /**
