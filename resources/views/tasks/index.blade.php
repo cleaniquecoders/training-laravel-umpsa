@@ -32,13 +32,14 @@
                                     <a class="px-1" href="{{ route('tasks.edit', $task->id) }}">✏️</a>
 
                                     <form action="{{ route('tasks.destroy', $task->id) }}"
-                                        class="hover:underline cursor-pointer"
-                                        method="POST">
+                                        class="hover:underline cursor-pointer" method="POST">
                                         @csrf @method('DELETE')
-                                        <div class="px-1" onclick="
-                                        if(confirm('Are you sure want to delete {{ $task->title }}?')) {
-                                            this.parentElement.submit()
-                                        }">🗑️</div>
+                                        <div class="px-1"
+                                            onclick="
+                            if(confirm('Are you sure want to delete {{ $task->title }}?')) {
+                                this.parentElement.submit()
+                            }">
+                                            🗑️</div>
                                     </form>
                                 </div>
                             </td>
