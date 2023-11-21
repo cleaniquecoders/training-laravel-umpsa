@@ -15,6 +15,7 @@
                 <table class="w-full">
                     <tr>
                         <th>Status</th>
+                        <th>Name</th>
                         <th>Task</th>
                         <th>Actions</th>
                     </tr>
@@ -23,6 +24,7 @@
                             <td class="text-center">
                                 {{ $task->status ? '✅' : '◻️' }}
                             </td>
+                            <td class="px-4">{{ $task->user->name }}</td>
                             <td class="px-4">{{ $task->title }}</td>
                             <td class="text-center">
                                 <div class="flex">
