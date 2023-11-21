@@ -62,3 +62,11 @@ Create new Laravel project.
 ```bash
 laravel new training
 ```
+
+## Debugging
+
+Install following package:
+
+```bash
+composer require barryvdh/laravel-debugbar --dev
+```
