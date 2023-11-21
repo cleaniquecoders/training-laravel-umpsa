@@ -25,9 +25,20 @@
                             </td>
                             <td class="px-4">{{ $task->title }}</td>
                             <td class="text-center">
-                                <a class="px-1" href="{{ route('tasks.show', $task->id) }}">🔎</a>
-                                <a class="px-1" href="{{ route('tasks.edit', $task->id) }}">✏️</a>
-                                <a class="px-1" href="{{ route('tasks.destroy', $task->id) }}">🗑️</a>
+                                <div class="flex">
+                                    <a class="px-1" href="{{ route('tasks.show', $task->id) }}">🔎</a>
+                                    <a class="px-1" href="{{ route('tasks.edit', $task->id) }}">✏️</a>
+
+                                    <form action="{{ route('tasks.destroy', $task->id) }}"
+                                        class="hover:underline cursor-pointer"
+                                        method="POST">
+                                        @csrf @method('DELETE')
+                                        <div class="px-1" onclick="
+                                        if(confirm('Are you sure want to delete {{ $task->title }}?')) {
+                                            this.parentElement.submit()
+                                        }">🗑️</div>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
