@@ -6,18 +6,19 @@ During this course, a project called Task Management will be used as a requireme
 
 Task Management System will have:
 
-- [x] Tasks CRUD
-    - [x] Migration
-      - [x] title
-      - [x] status
-      - [x] owner of task
-    - [x] Factory
-    - [x] Seeder
-    - [x] Model
+-   [x] Tasks CRUD
 
-- [x] Authentication
-- [ ] Authorization
-- [ ] Access Control with Role & Permissions
+    -   [x] Migration
+        -   [x] title
+        -   [x] status
+        -   [x] owner of task
+    -   [x] Factory
+    -   [x] Seeder
+    -   [x] Model
+
+-   [x] Authentication
+-   [ ] Authorization
+-   [ ] Access Control with Role & Permissions
 
 ```bash
 laravel new todo --git --jet --stack=livewire
@@ -40,9 +41,7 @@ To refresh db, run:
 php artisan migrate:fresh
 ```
 
-
 ## Setup
-
 
 For MacOS, put this in `~/.zsrch`:
 
@@ -57,7 +56,6 @@ composer global require laravel/installer
 ```
 
 Create new Laravel project.
-
 
 ```bash
 laravel new training
@@ -89,6 +87,27 @@ class User extends Authenticatable
     use AuthenticationLogable;
 ```
 
+## Laravel Auditing
+
+```bash
+composer require owen-it/laravel-auditing
+```
+
+```bash
+php artisan vendor:publish --provider "OwenIt\Auditing\AuditingServiceProvider" --tag="migrations"
+```
+
+Setup the model you want to audit:
+
+```php
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+class Task extends Model implements AuditableContract
+{
+    use AuditableTrait;
+    use HasFactory;
+```
+
 ## References
 
-- <https://carbon.nesbot.com/>
+-   <https://carbon.nesbot.com/>
