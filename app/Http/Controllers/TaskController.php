@@ -56,40 +56,36 @@ class TaskController extends Controller
         ]);
 
         return redirect(
-            route('tasks.show', $task->id)
+            route('tasks.show', $task)
         );
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-        $task = Task::where('id', $id)->first();
-
         return view('tasks.show', compact('task'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Task $task)
     {
-        $task = Task::where('id', $id)->first();
-
         return view('tasks.edit', compact('task'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
         $this->validate($request, [
             'title' => ['required', 'min:5', 'max:250'],
         ]);
 
-        Task::where('id', $id)->update([
+        $task->update([
             'title' => $request->title,
             'status' => $request->status ? true : false,
         ]);
@@ -101,16 +97,16 @@ class TaskController extends Controller
         ]);
 
         return redirect(
-            route('tasks.show', $id)
+            route('tasks.show', $task)
         );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        Task::where('id', $id)->delete();
+        $task->delete();
 
         session()->flash('message', [
             'title' => 'Delete Record',
