@@ -152,7 +152,13 @@ Update `app/Policies/TaskPolicy.php` according and you are good to go.
 
 ## Using Sanctum to Authenticate a Mobile App
 
-https://laravel-news.com/using-sanctum-to-authenticate-a-mobile-app
+- <https://laravel-news.com/using-sanctum-to-authenticate-a-mobile-app>
+
+## Authenticate with Sanctum + Socialite
+
+- https://bipinmhz.medium.com/sanctum-with-socialite-api-authentication-via-social-networks-in-laravel-8-624cb1737e8
+- https://dev.to/philipdroubi/laravel-9-api-authentication-via-sanctum-socialite-and-test-on-postman-2iki
+- https://dev.to/siddhartha/api-authentication-via-social-networks-in-laravel-8-using-sanctum-with-socialite-36pa
 
 ## References
 
