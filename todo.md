@@ -128,6 +128,28 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 php artisan migrate
 ```
 
+Setup `app\Models\User` to use `Spatie\Permission\Traits\HasRoles` trait:
+
+```php
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable
+{
+    use AuthenticationLogable;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use HasRoles;
+```
+
+Setup seeder accordingly as `database/seeders/PermissionSeeder.php` then run:
+
+```bash
+php artisan db:seed --class=PermissionSeeder
+```
+
+Update `app/Policies/TaskPolicy.php` according and you are good to go.
+
 ## References
 
 -   <https://carbon.nesbot.com/>
