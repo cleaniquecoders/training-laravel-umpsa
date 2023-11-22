@@ -150,6 +150,10 @@ php artisan db:seed --class=PermissionSeeder
 
 Update `app/Policies/TaskPolicy.php` according and you are good to go.
 
+## Using Sanctum to Authenticate a Mobile App
+
+https://laravel-news.com/using-sanctum-to-authenticate-a-mobile-app
+
 ## References
 
 -   <https://carbon.nesbot.com/>
