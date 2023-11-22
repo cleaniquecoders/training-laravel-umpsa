@@ -99,6 +99,10 @@ composer require owen-it/laravel-auditing
 php artisan vendor:publish --provider "OwenIt\Auditing\AuditingServiceProvider" --tag="migrations"
 ```
 
+```bash
+php artisan migrate
+```
+
 Setup the model you want to audit:
 
 ```php
@@ -108,6 +112,20 @@ class Task extends Model implements AuditableContract
 {
     use AuditableTrait;
     use HasFactory;
+```
+
+## Laravel Permission
+
+```bash
+composer require spatie/laravel-permission
+```
+
+```bash
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
+
+```bash
+php artisan migrate
 ```
 
 ## References
