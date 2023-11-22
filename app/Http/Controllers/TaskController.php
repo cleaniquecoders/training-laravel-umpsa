@@ -7,12 +7,20 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tasks = Task::with('user')->latest()->paginate(10);
+        $tasks = Task::with('user')
+            ->where('user_id', auth()->user()->id)
+            ->latest()->paginate(10);
 
         return view('tasks.index', compact('tasks'));
         // return view('tasks.index', ['tugasan' => $tasks]);
