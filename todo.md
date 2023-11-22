@@ -88,3 +88,7 @@ class User extends Authenticatable
 {
     use AuthenticationLogable;
 ```
+
+## References
+
+- <https://carbon.nesbot.com/>

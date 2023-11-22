@@ -22,6 +22,7 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <span class="text-xs italic text-gray-700">Your last login at {{ auth()->user()->lastLoginAt()->diffForHumans() }}</span>
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ms-3 relative">
