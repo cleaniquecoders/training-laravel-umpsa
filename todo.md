@@ -70,3 +70,21 @@ Install following package:
 ```bash
 composer require barryvdh/laravel-debugbar --dev
 ```
+
+## Authentication Log
+
+```bash
+composer require yadahan/laravel-authentication-log
+php artisan vendor:publish --provider="Yadahan\AuthenticationLog\AuthenticationLogServiceProvider"
+php artisan migrate
+```
+
+Add trait to `app\Models\User` class:
+
+```php
+use Yadahan\AuthenticationLog\AuthenticationLogable;
+
+class User extends Authenticatable
+{
+    use AuthenticationLogable;
+```
