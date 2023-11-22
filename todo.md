@@ -69,6 +69,8 @@ Install following package:
 composer require barryvdh/laravel-debugbar --dev
 ```
 
+> In production, do turn off the `APP_DEBUG` in `.env` file.
+
 ## Authentication Log
 
 ```bash
