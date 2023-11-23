@@ -1,0 +1,68 @@
+openapi: 3.1.0
+
+info:
+  title: Open API Specification
+  description: Training for OAS
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: api@cleaniquecoders.com
+    url: https://cleaniquecoders.com
+
+servers:
+  - url: http://0.0.0.0:3000
+    description: Mock server
+  - url: https://apis-dev.ump.edu.my
+    description: Staging server
+  - url: https://apis.ump.edu.my
+    description: Production server
+
+tags:
+- name: Task
+  description: Task operations
+- name: User
+  description: User related
+
+paths:
+  /user:
+    get:
+      tags:
+       - User
+      operationId: getUserProfile
+      description: Provide user profile details
+      responses:
+        '200':
+          description: User Profile.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+
+  /tasks:
+    get:
+      tags:
+       - Task
+      operationId: getTaskList
+      description: List of tasks owned by current logged in user.
+      responses:
+        '200':
+          description: A list of tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    status:
+                      type: string
+
