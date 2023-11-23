@@ -29,7 +29,10 @@ class AuthenticateController extends Controller
 
         // in flutter, use https://pub.dev/packages/device_info
         return response()->json([
-            'token' => $user->createToken($request->device_name)->plainTextToken
+            'token' => $user->createToken(
+                name: $request->device_name,
+                expiresAt: now()->addDays(90)
+            )->plainTextToken
         ]);
     }
 
@@ -47,6 +50,29 @@ class AuthenticateController extends Controller
 
         return response()->json([
             'status' => true,
+        ]);
+    }
+
+    public function validateToken(Request $request)
+    {
+        $status = false;
+
+        if ($token = $request->bearerToken()) {
+            $model = Sanctum::$personalAccessTokenModel;
+
+            $accessToken = $model::findToken($token);
+
+            if($accessToken) {
+                $status = now()->lessThan($accessToken->expires_at) ? true : false;
+
+                if(! $status) {
+                    $accessToken->delete();
+                }
+            }
+        }
+
+        return response()->json([
+            'status' => $status,
         ]);
     }
 }

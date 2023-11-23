@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthenticateController;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/login', [AuthenticateController::class, 'login']);
-Route::middleware('auth:sanctum')
-    ->post('/logout', [AuthenticateController::class, 'logout']);
+Route::post('/validate', [AuthenticateController::class, 'validateToken']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function() {
+    Route::post('/logout', [AuthenticateController::class, 'logout']);
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::get('/tasks', function(Request $request) {
+        return Task::where('user_id', $request->user()->id)->paginate();
+    });
 });
