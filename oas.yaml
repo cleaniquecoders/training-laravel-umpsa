@@ -41,10 +41,13 @@ paths:
               properties:
                 email:
                   type: string
+                  example: nasrul@cleaniquecoders.com
                 password:
                   type: string
+                  example: passwordStrongEngough
                 device_name:
                   type: string
+                  example: ipong12
       responses:
         '200':
           description: Successful login
@@ -55,6 +58,17 @@ paths:
                 properties:
                   token:
                     type: string
+                    example: 1234567890asdas
+        '401':
+          description: Unsuccessful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid Credentials
 
 
   /user:
@@ -63,6 +77,8 @@ paths:
        - User
       operationId: getUserProfile
       description: Provide user profile details
+      security:
+      - api_key: []
       responses:
         '200':
           description: User Profile.
@@ -77,14 +93,6 @@ paths:
                     type: string
                   email:
                     type: string
-                  phone:
-                    type: string
-                  address:
-                    type: string
-                  birthdate:
-                    type: string
-                  isActive:
-                    type: boolean
 
   /tasks:
     get:
@@ -92,6 +100,8 @@ paths:
        - Task
       operationId: getTaskList
       description: List of tasks owned by current logged in user.
+      security:
+      - api_key: []
       responses:
         '200':
           description: A list of tasks.
@@ -106,4 +116,10 @@ paths:
                       type: string
                     status:
                       type: string
+
+components:
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer
 
