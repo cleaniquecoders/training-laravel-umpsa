@@ -18,12 +18,45 @@ servers:
     description: Production server
 
 tags:
-- name: Task
-  description: Task operations
+- name: Auth
+  description: Auth related
 - name: User
   description: User related
+- name: Task
+  description: Task operations
 
 paths:
+  /login:
+    post:
+      tags:
+      - Auth
+      operationId: authLogin
+      description: Login to Application
+      requestBody:
+        description: Provide credential details
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                device_name:
+                  type: string
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+
   /user:
     get:
       tags:
@@ -44,6 +77,14 @@ paths:
                     type: string
                   email:
                     type: string
+                  phone:
+                    type: string
+                  address:
+                    type: string
+                  birthdate:
+                    type: string
+                  isActive:
+                    type: boolean
 
   /tasks:
     get:
